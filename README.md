@@ -22,6 +22,10 @@ Each stack ships with one trivial passing function + one passing test.
 Tickets ask the worker to add one more function + one more test in the
 same dir.
 
+One extra ticket (`tickets/06-*`) touches `ruby/Gemfile` deliberately,
+to exercise the sensitive-manifest widening from fabrik#199. Its
+closing evidence is the operator-review banner on the resulting PR.
+
 ## How tickets land here
 
 The repo is wired up on a fabrik tenant. File an issue on this repo
