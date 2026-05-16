@@ -5,8 +5,36 @@ on:
   push:
     branches: [main]
 
+# Each per-stack job only runs when its dir changed (or the workflow
+# itself). Without this, a Ruby-only PR triggers the R job too and one
+# transient R-setup blip turns the PR red — driving the fabrik worker
+# into a re-cycle on something it didn't break.
+
 jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      go: ${{ steps.filter.outputs.go }}
+      r: ${{ steps.filter.outputs.r }}
+      rust: ${{ steps.filter.outputs.rust }}
+      dotnet: ${{ steps.filter.outputs.dotnet }}
+      ruby: ${{ steps.filter.outputs.ruby }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            workflow: ['.github/workflows/**']
+            go: ['go/**', '.github/workflows/**']
+            r: ['r/**', '.github/workflows/**']
+            rust: ['rust/**', '.github/workflows/**']
+            dotnet: ['dotnet/**', '.github/workflows/**']
+            ruby: ['ruby/**', '.github/workflows/**']
+
   go:
+    needs: changes
+    if: needs.changes.outputs.go == 'true'
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -19,6 +47,8 @@ jobs:
       - run: go test ./...
 
   rust:
+    needs: changes
+    if: needs.changes.outputs.rust == 'true'
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -29,6 +59,8 @@ jobs:
       - run: cargo test --quiet
 
   r:
+    needs: changes
+    if: needs.changes.outputs.r == 'true'
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -43,6 +75,8 @@ jobs:
       - run: Rscript -e 'testthat::test_dir("tests/testthat")'
 
   dotnet:
+    needs: changes
+    if: needs.changes.outputs.dotnet == 'true'
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -55,6 +89,8 @@ jobs:
       - run: dotnet test --nologo
 
   ruby:
+    needs: changes
+    if: needs.changes.outputs.ruby == 'true'
     runs-on: ubuntu-latest
     defaults:
       run:
