@@ -12,4 +12,13 @@ public class CalculatorTests
     {
         Assert.Equal(expected, Calculator.DoubleValue(input));
     }
+
+    [Theory]
+    [InlineData(0L, 0L)]
+    [InlineData(4L, 12L)]
+    [InlineData(-3L, -9L)]
+    public void TripleValue_TriplesItsInput(long input, long expected)
+    {
+        Assert.Equal(expected, Calculator.TripleValue(input));
+    }
 }
