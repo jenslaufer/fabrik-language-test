@@ -1,0 +1,12 @@
+Package: flt.calc
+Type: Package
+Title: Fabrik Language Test — R Stack
+Version: 0.0.1
+Authors@R: person("Jens", "Laufer", role = c("aut", "cre"), email = "jenslaufer@gmail.com")
+Description: Minimal R package used as a target for fabrik tickets that
+    exercise R + testthat. Each ticket adds a sibling function and test.
+License: MIT
+Encoding: UTF-8
+Suggests:
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3

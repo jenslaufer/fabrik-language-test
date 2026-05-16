@@ -1,0 +1,10 @@
+[package]
+name = "flt-calc"
+version = "0.0.1"
+edition = "2021"
+description = "Fabrik language-test fixture — Rust stack"
+license = "MIT"
+
+[lib]
+name = "flt_calc"
+path = "src/lib.rs"
