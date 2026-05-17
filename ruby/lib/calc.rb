@@ -7,4 +7,8 @@ module Calc
   def double_value(n)
     n * 2
   end
+
+  def triple_value(n)
+    n * 3
+  end
 end
