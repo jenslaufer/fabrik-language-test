@@ -2,7 +2,7 @@ package calc
 
 import "testing"
 
-func TestDouble(t *testing.T) {
+func TestMultiplyByTwo(t *testing.T) {
 	cases := []struct {
 		in, want int
 	}{
@@ -11,8 +11,8 @@ func TestDouble(t *testing.T) {
 		{-2, -4},
 	}
 	for _, c := range cases {
-		if got := Double(c.in); got != c.want {
-			t.Errorf("Double(%d) = %d, want %d", c.in, got, c.want)
+		if got := MultiplyByTwo(c.in); got != c.want {
+			t.Errorf("MultiplyByTwo(%d) = %d, want %d", c.in, got, c.want)
 		}
 	}
 }
