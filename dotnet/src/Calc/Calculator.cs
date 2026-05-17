@@ -4,4 +4,6 @@ namespace Calc;
 public static class Calculator
 {
     public static long DoubleValue(long n) => n * 2;
+
+    public static long TripleValue(long n) => n * 3;
 }
