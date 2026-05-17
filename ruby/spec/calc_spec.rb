@@ -14,4 +14,10 @@ RSpec.describe Calc do
       expect(Calc.triple_value(-3)).to eq(-9)
     end
   end
+
+  describe ".ruby_version_ok?" do
+    it "returns true on Ruby 3.2 or later" do
+      expect(Calc.ruby_version_ok?).to be(true)
+    end
+  end
 end
