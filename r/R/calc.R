@@ -8,3 +8,12 @@
 double_value <- function(n) {
   n * 2
 }
+
+#' Triple a numeric value
+#'
+#' @param n numeric scalar
+#' @return n * 3
+#' @export
+triple_value <- function(n) {
+  n * 3
+}

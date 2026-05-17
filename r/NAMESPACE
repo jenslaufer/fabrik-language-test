@@ -1,1 +1,2 @@
 export(double_value)
+export(triple_value)
