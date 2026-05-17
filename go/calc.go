@@ -5,3 +5,8 @@ package calc
 func Double(n int) int {
 	return n * 2
 }
+
+// Triple returns n * 3.
+func Triple(n int) int {
+	return n * 3
+}
