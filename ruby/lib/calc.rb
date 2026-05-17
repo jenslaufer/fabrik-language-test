@@ -11,4 +11,8 @@ module Calc
   def triple_value(n)
     n * 3
   end
+
+  def ruby_version_ok?
+    Gem::Version.new(RUBY_VERSION) >= Gem::Version.new("3.2")
+  end
 end
