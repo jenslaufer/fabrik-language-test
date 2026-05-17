@@ -72,7 +72,13 @@ jobs:
         with:
           working-directory: r
           extra-packages: any::testthat
-      - run: Rscript -e 'testthat::test_dir("tests/testthat")'
+      # `testthat::test_dir` runs in a bare R session — the package source
+      # is on disk but its functions aren't on the search path, so every
+      # test fails with "could not find function". Use `pkgload::load_all`
+      # to attach the source like `devtools::load_all` would, matching the
+      # `tests/testthat.R` entry point's `library(flt.calc)` semantics
+      # without the install step.
+      - run: Rscript -e 'pkgload::load_all("."); testthat::test_dir("tests/testthat", stop_on_failure = TRUE)'
 
   dotnet:
     needs: changes
