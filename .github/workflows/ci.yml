@@ -4,6 +4,12 @@ on:
   pull_request:
   push:
     branches: [main]
+  workflow_dispatch:
+    inputs:
+      run_tests:
+        description: Run tests
+        type: boolean
+        default: false
 
 # Each per-stack job only runs when its dir changed (or the workflow
 # itself). Without this, a Ruby-only PR triggers the R job too and one
@@ -12,6 +18,7 @@ on:
 
 jobs:
   changes:
+    if: ${{ inputs.run_tests }}
     runs-on: ubuntu-latest
     outputs:
       go: ${{ steps.filter.outputs.go }}
