@@ -10,3 +10,8 @@ func MultiplyByTwo(n int) int {
 func Triple(n int) int {
 	return n * 3
 }
+
+// Quadruple returns n * 4.
+func Quadruple(n int) int {
+	return n * 4
+}
