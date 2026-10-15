@@ -31,3 +31,18 @@ func TestTriple(t *testing.T) {
 		}
 	}
 }
+
+func TestQuadruple(t *testing.T) {
+	cases := []struct {
+		in, want int
+	}{
+		{0, 0},
+		{4, 16},
+		{-3, -12},
+	}
+	for _, c := range cases {
+		if got := Quadruple(c.in); got != c.want {
+			t.Errorf("Quadruple(%d) = %d, want %d", c.in, got, c.want)
+		}
+	}
+}
